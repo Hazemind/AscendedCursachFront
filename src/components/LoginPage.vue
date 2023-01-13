@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 #loginPage{
-  height:400px;
+  height:200px;
   margin:200px;
   color:white;
   padding:40px;
