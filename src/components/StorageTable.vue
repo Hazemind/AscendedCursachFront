@@ -64,6 +64,7 @@ export default {
       filterCellSize:'',
       filterProductName:'',
       filterDate:'',
+      maxRows:''
     }
   },
   methods:{
@@ -185,20 +186,20 @@ export default {
     createFromAndTo(size,from){
       this.$store.commit('changeMax', size)
       this.$store.commit('changeFrom',from)
-      if (size<10){
+      if (size<this.maxRows){
         this.$store.commit('changeTo',size)
       }else{
-        this.$store.commit('changeTo',10)
+        this.$store.commit('changeTo',this.maxRows)
       }
     },
     getLoadStorageList(){
       axios
-          .get('http://95.216.8.101:8080/storage/api/v1/loadStorageList?from='+this.$store.getters.paginator.from+'&to='+this.$store.getters.paginator.to)
+          .get('http://95.216.8.101:8080/storage/api/v1/loadStorageList?from='+(this.$store.getters.paginator.from)+'&to='+this.maxRows)
           .then(response=>{this.dbStorageTable = response;this.showResponse()})
     },
     getLoadStorageList2(obj){
       axios
-          .post('http://95.216.8.101:8080/storage/api/v1/loadStorageList2?from='+this.$store.getters.paginator.from+'&to='+this.$store.getters.paginator.to,obj)
+          .post('http://95.216.8.101:8080/storage/api/v1/loadStorageList2?from='+this.$store.getters.paginator.from+'&to='+this.maxRows,obj)
           .then(response=>{this.dbStorageTable = response;this.showResponse()})
     },
     changeFromAndTo(key){
@@ -206,22 +207,23 @@ export default {
       let to = this.$store.getters.paginator.to
       let max = this.$store.getters.paginator.max
       if (key){
-        if ((to+10)>=max){
+        if ((to+this.maxRows)>=max){
           this.$store.commit("changeTo",max)
           this.$store.commit("changeFrom",to)
         }else{
-          this.$store.commit("changeTo",to+10)
+          this.$store.commit("changeTo",to+this.maxRows)
           this.$store.commit("changeFrom",to)
         }
       }else {
-        if ((from - 10 <= 0)) {
+        if ((from - this.maxRows <= 0)) {
           this.$store.commit("changeFrom", 0)
           this.$store.commit("changeTo", from)
         } else {
-          this.$store.commit("changeFrom", from - 10)
+          this.$store.commit("changeFrom", from - this.maxRows)
           this.$store.commit("changeTo", from)
         }
       }
+      console.log(this.$store.getters.paginator.from + " - " + this.$store.getters.paginator.to + " - " + this.$store.getters.paginator.max)
       this.getLoadStorageList()
     },
     kickImposter(){
@@ -235,6 +237,7 @@ export default {
   mounted(){
     this.kickImposter()
     this.getLoadProductList()
+    this.maxRows = 7
   },
 }
 </script>
