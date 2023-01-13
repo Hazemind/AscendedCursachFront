@@ -10,14 +10,14 @@
       <h2>Фильтры</h2>
       <div style=" display:flex; max-height: 38px">
         <!--Фильтры таблицы-->
-        <b-form-input style="max-width: 219.6px;margin-left:5px;margin-right:5px" type="text" v-model="filterCellNumber"/>
-        <b-form-input style="max-width: 317.75px;margin-left:5px;margin-right:5px" type="text" v-model="filterQuanity"/>
-        <b-form-input style="display:inline-block;max-width: 230.983px;margin-left:5px;margin-right:5px" type="text" v-model="filterCellSize"/>
-        <b-form-select style="max-width: 298.733px;margin-left:5px;margin-right:5px" :options="productNamesList"  v-model="filterProductName"/>
-        <b-datepicker style="max-width: 300.083px;margin-left:5px;margin-right:5px" v-model="filterDate" range ></b-datepicker>
+        <b-form-input style="max-width: 13%;margin-left:5px;margin-right:5px" type="text" v-model="filterCellNumber"/>
+        <b-form-input style="max-width: 19%;margin-left:5px;margin-right:5px" type="text" v-model="filterQuanity"/>
+        <b-form-input style="max-width: 13.5%;margin-left:5px;margin-right:5px" type="text" v-model="filterCellSize"/>
+        <b-form-select style="max-width: 18%;margin-left:5px;margin-right:5px" :options="productNamesList"  v-model="filterProductName"/>
+        <b-datepicker style="max-width: 20%;margin-left:5px;margin-right:5px" v-model="filterDate" range ></b-datepicker>
         <div style="max-height: 38px">
-          <b-button style="margin-left:30px;margin-right:5px;" variant="primary" v-on:click="showWithFilters()" >Применить</b-button>
-          <b-button style="margin-left:5px;margin-right:5px;" variant="warning" v-on:click="clearFilter()" >Убрать</b-button>
+          <b-button style="margin-left:5px;margin-right:5px;" variant="primary" v-on:click="showWithFilters()" >Применить</b-button>
+          <b-button style="margin-left:5px;margin-right:5px;" variant="warning" v-on:click="clearFilter()" >X</b-button>
         </div>
       </div>
       <!-- Сама таблица -->
